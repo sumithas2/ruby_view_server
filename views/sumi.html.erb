@@ -1,3 +1,4 @@
+<%= Time.now %>
 <h2>About Me</h3>
 <div>
 <h3> My Interests </h5>
@@ -7,3 +8,25 @@
 		<% end %>
 	</ul>
 </div>
+<p>Comments </p> <br />
+<form method='post' action="<%= @request.path %>">
+<input type="text" name="first_name" placeholder="First Name" required /> 
+<br />
+<div> <br />
+
+Please select an option<br/><br />
+
+<input type="radio" name="feedback" value="like" />Like<br />
+<input type="radio" name="feedback" value="NoComments" /> No Comments <br />
+<br />
+<input type="submit" name="Submit">
+</div>
+
+</form>
+
+ <% if @request.query['first_name'] && !@request.query['first_name'].empty? \
+ 	&& !@request.query['feedback'].empty?%>
+    Hello <%= @request.query['first_name'] %>
+    Thank You for Feedback <%= @request.query['feedback'] %>
+  <% end %>
+
